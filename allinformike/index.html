@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All In For Mike: Benefit Poker Tournament</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0e8; /* Light Tan/Khaki background */
+        }
+        /* Define custom colors based on the logo theme */
+        .color-green-dark { background-color: #274b32; } /* Dark Forest Green for header/primary elements */
+        .color-khaki-light { background-color: #e0e0d0; } /* Light Khaki/Tan for main background sections */
+        .color-accent-gold { color: #ccac00; } /* Subtle Gold/Yellow accent for buttons/highlights */
+        .color-accent-red { color: #b03a3a; } /* Deep Red accent for important text */
+        
+        .header-bg {
+            background-color: #274b32; /* Dark Green */
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+        }
+        .poker-bg {
+            background-color: #1a1a1a;
+            background-image: radial-gradient(circle at center, rgba(176, 58, 58, 0.2) 0%, rgba(26, 26, 26, 1) 70%);
+        }
+        /* Custom animation for success message */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        /* Style for the registration step indicators */
+        .step-active {
+            @apply bg-[#b03a3a] text-white font-bold;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <div id="app" class="min-h-screen flex flex-col">
+
+        <!-- Header/Hero Section -->
+        <header class="header-bg text-white shadow-xl py-16 md:py-20">
+            <div class="container mx-auto px-4 text-center">
+                <!-- Logo Integration -->
+                <img src="BENFIT LOGO.jpg" 
+                     alt="All In For Mike Poker Benefit Event Logo" 
+                     class="mx-auto w-40 h-40 mb-6 object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/274b32/e0e0d0?text=Logo';">
+
+                <!-- Title -->
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter color-accent-gold">
+                    ALL IN FOR MIKE
+                </h1>
+                
+                <p class="text-xl md:text-3xl font-light mb-8 max-w-3xl mx-auto text-gray-200">
+                    A Poker Benefit Event to Support Mike Smith's Recovery
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button id="registerBtn" class="bg-[#ccac00] hover:bg-yellow-700 text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg text-lg uppercase tracking-wider">
+                        Pre-Register & Pay ($40)
+                    </button>
+                    <a href="#details" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg text-lg uppercase tracking-wider">
+                        Mike's Story & Event Details
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mike's Story Section -->
+        <section id="story" class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-4xl font-bold text-center mb-10 text-gray-800">Why We're Going All In</h2>
+
+                <div class="grid lg:grid-cols-3 gap-8 items-start">
+                    <!-- Left Column: Image and Family -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <img src="Mike and Sara.jpeg" 
+                             alt="Mike and Sara smiling in sunglasses" 
+                             class="w-full h-auto object-cover rounded-xl shadow-xl border-4 border-[#ccac00]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/333/fff?text=Mike+Smith+Picture';">
+
+                        <img src="Mike Family (1)-Picsart-AiImageEnhancer.jpg" 
+                             alt="Mike and his family" 
+                             class="w-full h-auto object-cover rounded-xl shadow-xl border-4 border-[#b03a3a]"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/333/fff?text=Mike+Smith+Family';">
+                    </div>
+
+                    <!-- Right Column: Text Story -->
+                    <div class="lg:col-span-2">
+                        <div class="p-6 md:p-10 bg-red-50 rounded-xl shadow-lg border-l-8 border-[#b03a3a]">
+                            <h3 class="text-2xl font-semibold mb-4 text-[#b03a3a]">Supporting Mike Smith</h3>
+                            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                                Mike Smith is one of those guys you can count on... loyal, funny, grounded, and always there when someone needs a hand. Before all that, he served in the United States Army, which probably explains why he handles life the way he does: steady, dependable, and solid under pressure.
+                            </p>
+                            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                                He’s a husband, a dad, and a full-time worker at a local print shop. And if you know him, you know this: Mike shows up for people. Every time.
+                                Now it’s our turn to show up for him. Half of all proceeds go directly to Mike Smith as he recovers from a serious motorcycle accident. Surgery, therapy, and months off work mean he needs our support now more than ever.
+                            </p>
+                            <p class="text-xl font-bold text-[#b03a3a]">
+                                Come play, hang out, and help someone who’s always been there for this community.
+                            </p>
+
+                            <!-- Gallery of Injury Photos -->
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="text-xl font-semibold mb-4 text-gray-700">A Glimpse into Mike's Journey</h4>
+                                <div class="flex space-x-4 overflow-x-auto pb-2">
+                                    <div class="w-1/2 sm:w-1/3 flex-shrink-0">
+                                        <img src="Mike Accident.jpg" 
+                                             alt="Mike immediately after the accident in a neck brace" 
+                                             class="rounded-lg shadow-md h-auto"
+                                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/cc3333/fff?text=Injury+Photo+1';">
+                                        <p class="text-xs text-center text-gray-500 mt-1">Hospital: Day 1</p>
+                                    </div>
+                                    <div class="w-1/2 sm:w-1/3 flex-shrink-0">
+                                        <img src="Mike hurt Legs.jpg" 
+                                             alt="Mike's legs bandaged after surgery" 
+                                             class="rounded-lg shadow-md h-auto"
+                                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/cc3333/fff?text=Injury+Photo+2';">
+                                        <p class="text-xs text-center text-gray-500 mt-1">Broke Both Feet</p>
+                                    </div>
+                                    <div class="w-1/2 sm:w-1/3 flex-shrink-0">
+                                        <!-- Using the poker image as a hopeful/fun element -->
+                                        <img src="camphoto_1804928587.jpg" 
+                                             alt="Mike playing poker at a table" 
+                                             class="rounded-lg shadow-md h-auto"
+                                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/229922/fff?text=Mike+At+The+Table';">
+                                        <p class="text-xs text-center text-gray-500 mt-1">We'll get him back to the tables soon!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Tournament Details Section -->
+        <section id="details" class="py-16 color-khaki-light">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Event Details</h2>
+
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <!-- Card 1: Date & Time -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#ccac00]">
+                        <svg class="w-12 h-12 text-[#ccac00] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Date & Time</h3>
+                        <p class="text-lg font-medium text-gray-700">Saturday, December 13th, 2025</p>
+                        <p class="text-sm text-gray-600">Start Time: 1:00 PM | Doors Open: 12:00 PM</p>
+                    </div>
+                    <!-- Card 2: Location -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#ccac00]">
+                        <svg class="w-12 h-12 text-[#ccac00] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Location</h3>
+                        <p class="text-lg font-medium text-gray-700">The Den</p>
+                        <p class="text-sm text-gray-600">316 S Industrial Blvd, Euless, TX 76040</p>
+                    </div>
+                    <!-- Card 3: Extras -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#ccac00]">
+                        <svg class="w-12 h-12 text-[#ccac00] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.524-.167-1.07-.308-1.63-.418m-5.263.666a2 2 0 100 4 2 2 0 000-4zM12 18V6m0 0H6m6 0h6"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Activities & More</h3>
+                        <p class="text-lg font-medium text-gray-700">Food by RossRolls, Prizes, Raffle, & Fun!</p>
+                        <p class="text-sm text-gray-600">Non-players welcome! Great raffle and door prizes available.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules and Buy-in Section (Updated structure) -->
+        <section class="py-16 poker-bg text-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 color-accent-gold">Buy-in & Structure</h2>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Format Details -->
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-4 color-accent-red">Tournament Format</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-[#ccac00] mr-3 mt-1">&#9830;</span> <!-- Diamond icon -->
+                                <div>
+                                    <span class="font-bold">Format:</span> No-Limit Texas Hold'em
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#ccac00] mr-3 mt-1">&#9830;</span>
+                                <div>
+                                    <span class="font-bold">Starting Stack:</span> 20,000 chips
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#ccac00] mr-3 mt-1">&#9830;</span>
+                                <div>
+                                    <span class="font-bold">Rebuys:</span> Available until the start of the 6th blind level ($40 each).
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#ccac00] mr-3 mt-1">&#9830;</span>
+                                <div>
+                                    <span class="font-bold">Add-ons:</span> Available at the second scheduled break ($40 each).
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#ccac00] mr-3 mt-1">&#9830;</span>
+                                <div>
+                                    <span class="font-bold">Blind Levels:</span> 20-minute levels.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Buy-in Details -->
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-4 color-accent-red">Entry Costs</h3>
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-xl">
+                            
+                            <div class="mb-4 pb-4 border-b border-gray-700">
+                                <p class="text-3xl font-extrabold text-center color-accent-gold">$40 Donation</p>
+                                <p class="text-xl text-center text-gray-300 font-medium">Online Pre-Registration</p>
+                                <p class="text-sm text-gray-400 text-center">*Pre-register before 12/10/2025</p>
+                            </div>
+
+                            <ul class="space-y-3 text-lg">
+                                <li class="flex justify-between items-center pb-2 text-gray-300">
+                                    <span>At the Door Entry</span>
+                                    <span class="font-bold color-accent-gold">$50 Donation</span>
+                                </li>
+                                <li class="flex justify-between items-center pt-2 color-accent-red font-bold">
+                                    <span>50% of ALL Proceeds go to Mike!</span>
+                                    <span class="text-xl">❤️</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-16 text-center">
+                     <button id="registerBtnBottom" class="bg-[#ccac00] hover:bg-yellow-700 text-gray-900 font-bold py-4 px-12 rounded-full transition duration-300 transform hover:scale-105 shadow-2xl text-xl uppercase tracking-widest">
+                        Go All In & Pre-Register for $40
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration/Payment Form Modal -->
+        <div id="registrationModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex justify-center items-center p-4" onclick="closeModal(event)">
+            <div class="bg-white w-full max-w-lg p-8 rounded-xl shadow-2xl relative" onclick="event.stopPropagation()">
+                
+                <!-- Registration Steps Indicator -->
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <div id="step1" class="w-1/2 text-center p-2 rounded-l-lg step-active">1. Player Info</div>
+                    <div id="step2" class="w-1/2 text-center p-2 rounded-r-lg bg-gray-200 text-gray-600 font-medium">2. Payment & Submit</div>
+                </div>
+
+                <form id="registrationForm" class="space-y-4">
+                    <!-- STEP 1: PLAYER INFO -->
+                    <div id="step1Content">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Player Information</h3>
+                        
+                        <!-- Name Input -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-[#ccac00] focus:border-[#ccac00] transition duration-150">
+                        </div>
+
+                        <!-- Email Input -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-[#ccac00] focus:border-[#ccac00] transition duration-150">
+                        </div>
+
+                        <!-- Next Button -->
+                        <button type="button" id="nextToPayment" class="w-full bg-[#ccac00] hover:bg-yellow-700 text-gray-900 font-bold py-3 rounded-lg transition duration-300 shadow-md mt-6">
+                            Next: Go to Payment
+                        </button>
+                    </div>
+
+                    <!-- STEP 2: PAYMENT AND SUBMIT -->
+                    <div id="step2Content" class="hidden">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Payment & Final Registration</h3>
+
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200 mb-4">
+                            <p class="text-sm font-semibold text-[#b03a3a] mb-2">Registration Cost: <span class="text-lg">$40</span></p>
+                            <p class="text-sm text-gray-700">
+                                Payment is handled by a separate, secure third-party site (e.g., PayPal/Stripe).
+                                Click the link below, complete your $40 Donation, and then **click "I Paid"** to finalize your registration in our player database.
+                            </p>
+                        </div>
+                        
+                        <!-- Payment Link Button (MUST BE REPLACED WITH YOUR REAL LINK) -->
+                        <a id="paymentLinkBtn" href="#" target="_blank" class="w-full inline-block text-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
+                            Go to Secure Payment Link ($40)
+                        </a>
+
+                        <div class="pt-6 mt-6 border-t border-gray-200">
+                            <label class="block text-gray-700 font-medium mb-2">Step 2: Confirmation</label>
+                            <div class="flex items-center p-3 border border-gray-300 rounded-lg bg-gray-50">
+                                <input type="checkbox" id="paidCheckbox" required class="text-[#b03a3a] focus:ring-[#b03a3a] rounded h-4 w-4">
+                                <label for="paidCheckbox" class="ml-3 text-sm text-gray-800">I have successfully completed the $40 payment.</label>
+                            </div>
+                        </div>
+
+                        <!-- Final Submission Button -->
+                        <button type="submit" id="submitRegistration" class="w-full bg-[#b03a3a] hover:bg-red-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md mt-6 disabled:opacity-50" disabled>
+                            Complete Registration (Save to Player List)
+                        </button>
+
+                        <button type="button" id="backToInfo" class="w-full text-sm text-gray-500 hover:text-gray-700 mt-3">
+                            ← Back to Player Information
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Close Button -->
+                <button type="button" onclick="document.getElementById('registrationModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition duration-150">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+
+         <!-- Success Message Box -->
+        <div id="successMessage" class="hidden fixed bottom-5 right-5 bg-green-600 text-white p-4 rounded-lg shadow-xl z-50 transition duration-300 transform" role="alert">
+            Registration Complete! Your name has been added to the player list.
+        </div>
+        
+        <!-- Error Message Box -->
+        <div id="errorMessage" class="hidden fixed bottom-5 right-5 bg-red-600 text-white p-4 rounded-lg shadow-xl z-50 transition duration-300 transform" role="alert">
+            Error saving registration. Please try again or check your payment link.
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-10">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; 2025 All In For Mike Fundraiser. | Hosted by The Romper Room</p>
+            <p class="mt-2 text-gray-400">Please play responsibly. This is a non-profit benefit event. TDA Rules apply.</p>
+        </div>
+    </footer>
+</div>
+
+<script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    
+    // --- GLOBAL CONFIGURATION & INITIALIZATION ---
+
+    // IMPORTANT: REPLACE THIS PLACEHOLDER WITH YOUR ACTUAL PAYMENT LINK
+    const PAYMENT_URL = 'https://www.paypal.com/paypalme/degenasty/40'; 
+
+    setLogLevel('Debug'); // Enable Firestore logging
+
+    // Get Canvas environment variables
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+    let db;
+    let auth;
+    let userId = null;
+
+    // UI Elements
+    const modal = document.getElementById('registrationModal');
+    const registerButtons = document.querySelectorAll('#registerBtn, #registerBtnBottom');
+    const form = document.getElementById('registrationForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    // Step Elements
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step1Content = document.getElementById('step1Content');
+    const step2Content = document.getElementById('step2Content');
+    const nextToPaymentBtn = document.getElementById('nextToPayment');
+    const backToInfoBtn = document.getElementById('backToInfo');
+    const paymentLinkBtn = document.getElementById('paymentLinkBtn');
+    const paidCheckbox = document.getElementById('paidCheckbox');
+    const submitRegistrationBtn = document.getElementById('submitRegistration');
+
+    // --- FIREBASE INITIALIZATION AND AUTHENTICATION ---
+    
+    async function initializeFirebase() {
+        if (!firebaseConfig.apiKey) {
+            console.error("Firebase configuration missing. Cannot enable database features.");
+            // Optionally disable registration buttons here if firebase is mandatory
+            return; 
+        }
+
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Authentication using the provided token or anonymously
+            if (initialAuthToken) {
+                await signInWithCustomToken(auth, initialAuthToken);
+            } else {
+                await signInAnonymously(auth);
+            }
+            userId = auth.currentUser?.uid;
+            console.log("Firebase initialized. User ID:", userId);
+        } catch (e) {
+            console.error("Error during Firebase initialization or authentication:", e);
+        }
+    }
+
+    // Call initialization function
+    initializeFirebase();
+
+    // --- UI FUNCTIONS ---
+
+    function showStep(stepNumber) {
+        if (stepNumber === 1) {
+            step1Content.classList.remove('hidden');
+            step2Content.classList.add('hidden');
+            step1.classList.add('step-active');
+            step2.classList.remove('step-active');
+        } else if (stepNumber === 2) {
+            step1Content.classList.add('hidden');
+            step2Content.classList.remove('hidden');
+            step2.classList.add('step-active');
+            step1.classList.remove('step-active');
+        }
+    }
+
+    function openModal() {
+        // Reset to step 1 every time modal opens
+        showStep(1); 
+        modal.classList.remove('hidden');
+        paymentLinkBtn.href = PAYMENT_URL; // Set the payment URL
+    }
+
+    function closeModal(event) {
+        if (event.target === modal) {
+            modal.classList.add('hidden');
+        }
+    }
+
+    function showMessage(element) {
+        element.classList.remove('hidden');
+        element.classList.add('animate-fadeInUp'); 
+        setTimeout(() => {
+            element.classList.add('hidden');
+            element.classList.remove('animate-fadeInUp');
+        }, 4000);
+    }
+    
+    // --- EVENT HANDLERS ---
+
+    // Open Modal Listener
+    registerButtons.forEach(button => {
+        button.addEventListener('click', openModal);
+    });
+
+    // Close Modal Listener
+    modal.addEventListener('click', closeModal);
+
+    // Step 1 to Step 2 Transition
+    nextToPaymentBtn.addEventListener('click', () => {
+        // Simple form validation for step 1 fields
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+
+        if (nameInput.checkValidity() && emailInput.checkValidity()) {
+             showStep(2);
+        } else {
+            // Trigger browser validation message
+            nameInput.reportValidity(); 
+            emailInput.reportValidity();
+        }
+    });
+
+    // Step 2 to Step 1 Transition
+    backToInfoBtn.addEventListener('click', () => {
+        showStep(1);
+    });
+
+    // Enable/Disable Submit Button based on Checkbox
+    paidCheckbox.addEventListener('change', () => {
+        submitRegistrationBtn.disabled = !paidCheckbox.checked;
+    });
+
+    // Form Submission (Final Step)
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        // Ensure Firebase is initialized
+        if (!db) {
+            console.error("Database not available. Cannot save registration.");
+            showMessage(errorMessage);
+            return;
+        }
+
+        // 1. Collect Data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const registrationTime = new Date().toISOString();
+        
+        // Data structure for Firestore
+        const registrationData = {
+            name: name,
+            email: email,
+            entryFee: 40, // Static since only one option is available
+            paymentStatus: 'Confirmed (Manual Check Required)', 
+            registrationDate: registrationTime,
+            submittedByUserId: userId,
+            // We use the timestamp as a unique ID reference for the payment
+            uniquePaymentRef: registrationTime.replace(/[^0-9]/g, ''), 
+        };
+
+        // 2. Save Data to Firestore
+        try {
+            // Path: /artifacts/{appId}/public/data/poker_registrations
+            const registrationsCollection = collection(db, 'artifacts', appId, 'public', 'data', 'poker_registrations');
+            
+            // Add a new document
+            await addDoc(registrationsCollection, registrationData);
+
+            console.log("Registration successfully saved to Firestore:", registrationData);
+
+            // 3. Success Feedback
+            modal.classList.add('hidden');
+            showMessage(successMessage);
+            form.reset();
+            paidCheckbox.checked = false; // Reset checkbox state
+            submitRegistrationBtn.disabled = true; // Disable button after reset
+            showStep(1); // Return modal to step 1
+            
+        } catch (e) {
+            console.error("Error writing document to Firestore:", e);
+            showMessage(errorMessage);
+        }
+    });
+</script>
+</body>
+</html>
